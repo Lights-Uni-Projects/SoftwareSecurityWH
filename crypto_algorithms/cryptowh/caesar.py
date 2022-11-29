@@ -46,7 +46,7 @@ class Caesar(CryptBase):
             raise ValueError("Offset will wrap around the alphabet. "
                              f"Please set is between 1 and {len(ascii_lowercase)}")
         elif shift == 0:
-            warnings.warn(f"Offset is 0! Your message will not be encrypted!")
+            warnings.warn("Offset is 0! Your message will not be encrypted!")
             shift = False
         else:
             if shift > 13:
@@ -114,7 +114,7 @@ class Caesar(CryptBase):
         if timer:
             start = time()
 
-        results: list[str] = list()
+        results: list[str] = []
 
         for i in range(1, 26):
             alg = self.__algorithm(self.input, i, encrypt=False)
