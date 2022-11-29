@@ -1,3 +1,3 @@
 [submodule "CalcHashes"]
-	path = CalcHashes
+	path = projects/CalcHashes
 	url = git@github.com:Lights-Uni-Projects/CalcHashes.git
