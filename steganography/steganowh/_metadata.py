@@ -1,4 +1,7 @@
-"""Light's basic cryptography functions and classes for his Software Security classes."""
+"""
+    Light's basic cryptography/steganography functions and classes
+    for his Software Security classes.
+"""
 
 __version__ = '0.0.1'
 

@@ -1,4 +1,4 @@
-name: lint cryptowh
+name: lint
 
 on:
     push:
@@ -30,7 +30,7 @@ jobs:
             - name: Install dependencies
               run: |
                   python3 -m pip install --upgrade pip
-                  pip install -r crypto_algorithms/requirements-dev.txt
+                  pip install -r steganography/requirements-dev.txt
             - name: Running flake8
               run: flake8 .
             - name: Running mypy

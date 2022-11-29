@@ -2,12 +2,12 @@ from abc import ABC, abstractmethod
 from typing import Any
 
 __all__: list[str] = [
-    "CryptBase"
+    "SteganographyBase"
 ]
 
 
-class CryptBase(ABC):
-    """Abstract cryptography class."""
+class SteganographyBase(ABC):
+    """Abstract steganography class."""
 
     remove_non_ascii: bool
     """Whether to ignore non-ascii characters or remove them."""
@@ -17,7 +17,7 @@ class CryptBase(ABC):
 
     def __init__(self, remove_non_ascii: bool = False, all_caps: bool = False) -> None:
         """
-        Initiate base cryptography class.
+        Initiate base steganography class.
 
         :param remove_non_ascii:    If True, remove non-ascii characters. Else, ignore them.
         :param all_caps:            If True, set the entire input string to uppercase.

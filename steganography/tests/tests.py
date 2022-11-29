@@ -1,4 +1,4 @@
-import cryptowh as cwh
+import steganowh as cwh
 import unittest
 
 # TODO: Figure out how to move this to another direectory

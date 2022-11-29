@@ -4,15 +4,15 @@ from string import ascii_letters, ascii_lowercase, ascii_uppercase
 from time import time
 from typing import Any
 
-from .base import CryptBase
+from .base import SteganographyBase
 
 __all__: list[str] = [
     "Caesar"
 ]
 
 
-class Caesar(CryptBase):
-    """Cryptography using the caesar cipher method."""
+class Caesar(SteganographyBase):
+    """Steganography using the caesar cipher method."""
 
     input: str
     """Input string."""
@@ -22,7 +22,7 @@ class Caesar(CryptBase):
 
     def __init__(self, input: str, shift: int = 13, **kwargs: Any):
         """
-        Cryptography using the Caesar cipher algorithm.
+        Steganography using the Caesar cipher algorithm.
 
         This works by substituting a character with the Nth character
         in the alphabet, making it a very easy message to break.

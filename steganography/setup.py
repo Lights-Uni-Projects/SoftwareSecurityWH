@@ -6,7 +6,7 @@ from pathlib import Path
 long_description = Path("README.md").read_text()
 install_requires = Path("requirements.txt").read_text()
 
-package_name = "cryptowh"
+package_name = "steganowh"
 
 exec(Path(f'{package_name}/_metadata.py').read_text(), meta := dict[str, str]())
 
@@ -28,7 +28,7 @@ setuptools.setup(
     },
     install_requires=install_requires,
     project_urls={
-        "Source Code": 'https://github.com/Lights-Uni-Projects/SoftwareSecurityWH',
+        "Source Code": 'https://github.com/Lights-Uni-Projects/SoftwareSecurityWH/steganography',
     },
     classifiers=[
         "Natural Language :: English",
