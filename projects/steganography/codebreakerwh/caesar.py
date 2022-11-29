@@ -12,39 +12,43 @@ __all__: list[str] = [
 
 
 class Caesar(SteganographyBase):
-    """Steganography using the caesar cipher method."""
+    """Steganography using the Caesar cipher method."""
 
-    input: str
-    """Input string."""
+    cipher: str
+    """The cipher to encrypt or decrypt."""
 
     shift: int
     """Amount of alphabetical characters to offset by."""
 
-    def __init__(self, input: str, shift: int = 13, **kwargs: Any):
+    def __init__(self, cipher: str, shift: int = 13, **kwargs: Any):
         """
         Steganography using the Caesar cipher algorithm.
 
         This works by substituting a character with the Nth character
-        in the alphabet, making it a very easy message to break.
+        in the alphabet, making it a very easy code to break.
 
-        :param input:               The input value to encrypt. Must be a string.
+        :param cipher:              The cipher to encrypt or decrypt. Must be a string.
         :param shift:               The amount of alphabetical characters to offset by.
                                     Must be more or less than 0 and less than 25/more than -25.
+                                    Default: 13.
         :param remove_non_ascii:    If True, remove non-ascii characters. Else, ignore them.
-        :param all_caps:            If True, set the entire input string to uppercase.
+                                    Default: False.
+        :param all_caps:            If True, set the entire cipher to uppercase.
+                                    Default: False.
         """
         super().__init__(**kwargs)
 
-        if not isinstance(input, str):
-            raise ValueError("Your input must be a string!")
+        # Validating `cipher`.
+        if not isinstance(cipher, str):
+            raise ValueError("Your cipher must be a string!")
 
         if self.remove_non_ascii:
-            input = re.sub('[^A-Za-z0-9]+', '', input)
+            cipher = re.sub('[^A-Za-z0-9]+', '', cipher)
 
         # Validating `shift`.
         if abs(shift) > (len(ascii_lowercase) - 1):
             raise ValueError("Offset will wrap around the alphabet. "
-                             f"Please set is between 1 and {len(ascii_lowercase)}")
+                             f"Please set it between 1 and {len(ascii_lowercase)}")
         elif shift == 0:
             warnings.warn("Offset is 0! Your message will not be encrypted!")
             shift = False
@@ -55,16 +59,16 @@ class Caesar(SteganographyBase):
                 shift += 13
 
         # Setting values.
-        self.input = input
+        self.cipher = cipher
         self.shift = shift
 
     @staticmethod
-    def __algorithm(input: str, shift: int, encrypt: bool) -> str:
+    def __algorithm(cipher: str, shift: int, encrypt: bool) -> str:
         out_str: str = ""
 
         ascii_upper_a, ascii_lower_a = ascii_uppercase[0], ascii_lowercase[0]
 
-        for char in input:
+        for char in cipher:
             if char not in ascii_letters:
                 out_str += char
                 continue
@@ -82,34 +86,37 @@ class Caesar(SteganographyBase):
 
     def encrypt(self) -> str:
         """
-        Encrypt an input string using the Caesar cipher algorithm.
+        Encrypt an cipher string using the Caesar cipher algorithm.
 
         :return:            Encrypted string.
         """
         if not self.shift:
-            return self.input
+            return self.cipher
 
-        return self.__algorithm(self.input, self.shift, encrypt=True)
+        return self.__algorithm(self.cipher, self.shift, encrypt=True)
 
     def decrypt(self) -> str:
         """
-        Decrypt an input string using the Caesar cipher algorithm.
+        Decrypt a cipher using the Caesar cipher algorithm.
 
         :return:            Decrypted string.
         """
         if not self.shift:
-            return self.input
+            return self.cipher
 
-        return self.__algorithm(self.input, self.shift, encrypt=False)
+        return self.__algorithm(self.cipher, self.shift, encrypt=False)
 
     def bruteforce(self, timer: bool = True) -> list[str]:
         """
-        Bruteforce a Ceasar cypher.
+        Bruteforce using the Ceasar cypher.
 
-        All the results will be printed in the terminal.
+        All the results will be printed in the terminal
+        and returned as a list of strings.
 
         :param timer:       Whether to time the operation or not.
                             Time taken gets printed at the end of the process.
+
+        :return:            List of results.
         """
         if timer:
             start = time()
@@ -117,7 +124,7 @@ class Caesar(SteganographyBase):
         results: list[str] = []
 
         for i in range(1, 26):
-            alg = self.__algorithm(self.input, i, encrypt=False)
+            alg = self.__algorithm(self.cipher, i, encrypt=False)
             results += [alg]
 
             print(f"Shift by {i}: {alg}")
