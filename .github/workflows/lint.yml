@@ -14,9 +14,6 @@ on:
 jobs:
     windows:
         runs-on: windows-latest
-        defaults:
-            run:
-                working-directory: cryptowh
         strategy:
             matrix:
                 versions:
