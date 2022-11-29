@@ -1,0 +1,4 @@
+[submodule "CalcHashes"]
+	path = CalcHashes
+	url = https://github.com/Lights-Uni-Projects/CalcHashes
+	branch = master
