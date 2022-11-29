@@ -4,6 +4,7 @@ on:
     push:
         paths:
             - "**.py"
+            - "**.yml"
     pull_request:
         branches:
             - master
@@ -15,7 +16,7 @@ jobs:
         runs-on: windows-latest
         defaults:
             run:
-                working-directory: ./cryptowh
+                working-directory: cryptowh
         strategy:
             matrix:
                 versions:
