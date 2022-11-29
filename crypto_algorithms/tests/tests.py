@@ -7,7 +7,10 @@ TestCase = unittest.TestCase
 
 
 class TestCeasar(TestCase):
+    """Tests for the Caesar Ciper method."""
+
     def test_encryption(self):
+        """Test encryption."""
         self.assertEquals(cwh.Caesar("bananabread", shift=13).encrypt(), "onananoernq")
 
 

@@ -16,6 +16,12 @@ class CryptBase(ABC):
     """Whether to convert the input to uppercase."""
 
     def __init__(self, remove_non_ascii: bool = False, all_caps: bool = False) -> None:
+        """
+        Initiate base cryptography class.
+
+        :param remove_non_ascii:    If True, remove non-ascii characters. Else, ignore them.
+        :param all_caps:            If True, set the entire input string to uppercase.
+        """
         self.remove_non_ascii = remove_non_ascii
         self.all_caps = all_caps
 
